@@ -1,2 +1,12 @@
 # sentencer
-Utility to translate text to source/target format for eace sentence. In several languages just for educational purposes.
+
+Utility to translate each sentence of a text to source/target
+
+## Roadmap
+
+- [ ] Haskell
+- [ ] PureScript
+- [ ] Python
+- [ ] TypeScript
+- [ ] Rust
+- [ ] Kotlin
