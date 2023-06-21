@@ -8,7 +8,6 @@ import Shelly qualified as S
 import qualified Data.Text as T
 -- import qualified Data.Text.IO as TIO
 -- import Text.Pretty.Simple
--- import Data.Maybe
 import Control.Lens
 import Data.Aeson.Lens
 import Data.Foldable
@@ -21,10 +20,10 @@ main = do
     S.writefile "../result.txt" T.empty
     for_ texts $ \t -> do
       dump <- S.run "trans" ["es:ru", "-dump", t]
-      let normilised = normalizer dump
-      let tr = foldTranslation normilised
-      S.appendfile "../result.txt" $ T.unlines $ pairSwap tr
+      let tr = T.unlines $ pairSwap $ foldTranslation $ normalizer dump
+      S.appendfile "../result.txt" tr
 
+-- Helpers
 
 pairSwap :: [a] -> [a]
 pairSwap [] = []
