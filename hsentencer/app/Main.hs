@@ -11,17 +11,17 @@ import qualified Data.Text as T
 import Control.Lens
 import Data.Aeson.Lens
 import Data.Foldable
+import Data.Traversable
 
 main :: IO ()
 main = do
   S.shelly $ S.print_stdout False $ do
     txt <- S.readfile "../sample.txt"
     let texts = T.lines txt
-    S.writefile "../result.txt" T.empty
-    for_ texts $ \t -> do
+    results <- forM texts $ \t -> do
       dump <- S.run "trans" ["es:ru", "-dump", t]
-      let tr = T.unlines $ pairSwap $ foldTranslation $ normalizer dump
-      S.appendfile "../result.txt" tr
+      pure $ T.unlines $ pairSwap $ foldTranslation $ normalizer dump
+    S.writefile "../result.txt" $ T.unlines results
 
 -- Helpers
 
