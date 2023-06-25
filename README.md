@@ -4,7 +4,7 @@ Utility to translate each sentence of a text to source/target
 
 ## Roadmap
 
-- [ ] Haskell
+- [x] Haskell
 - [ ] PureScript
 - [ ] Python
 - [ ] TypeScript
