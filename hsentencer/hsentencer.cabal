@@ -64,6 +64,10 @@ executable hsentencer
   build-depends:
       shelly
     , text
-    -- , pretty-simple
-    , lens-aeson
+    , lens-aeson ^>= 1.2.2
     , lens
+
+    -- , aeson
+    -- , vector
+    -- , containers
+    -- , pretty-simple
