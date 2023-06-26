@@ -14,10 +14,6 @@ import Node.Encoding as NE
 main :: Effect Unit
 main = do
   log "The answer is "
-  res <- exec "ls" defaultExecOptions (\_ -> pure unit)
-  mBuffer <- read (stdout res) Nothing
-  case mBuffer of
-    Nothing -> log "No buffer"
-    Just b -> do
-      s <- NB.toString NE.UTF8 b
-      log s
+  buf <- execSync "ls" defaultExecSyncOptions
+  str <- NB.toString NE.UTF8 buf
+  log str
