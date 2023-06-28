@@ -12,16 +12,23 @@ to generate this file without the comments in this block.
 -}
 { name = "my-project"
 , dependencies =
-  [ "assert"
+  [ "aff"
+  , "argonaut"
+  , "arrays"
+  , "assert"
   , "console"
   , "effect"
+  , "either"
   , "foldable-traversable"
   , "lists"
   , "maybe"
   , "node-buffer"
   , "node-child-process"
+  , "node-fs"
   , "node-streams"
   , "prelude"
+  , "profunctor-lenses"
+  , "strings"
   ]
 , packages = ./psentencer/packages.dhall
 , sources = [ "psentencer/src/**/*.purs", "psentencer/test/**/*.purs" ]

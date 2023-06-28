@@ -27,4 +27,4 @@ cabal.project.local~
 # PureScript
 /output/
 /.spago
-
+/.psc*
