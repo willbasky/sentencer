@@ -17,6 +17,7 @@ to generate this file without the comments in this block.
   , "arrays"
   , "assert"
   , "console"
+  , "debug"
   , "effect"
   , "either"
   , "foldable-traversable"
@@ -29,6 +30,7 @@ to generate this file without the comments in this block.
   , "prelude"
   , "profunctor-lenses"
   , "strings"
+  , "tuples"
   ]
 , packages = ./psentencer/packages.dhall
 , sources = [ "psentencer/src/**/*.purs", "psentencer/test/**/*.purs" ]
