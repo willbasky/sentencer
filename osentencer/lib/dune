@@ -1,0 +1,4 @@
+(library
+ (name osentencer)
+ ; (wrapped false) ; it help to call Utils.<func> instead of Osentencer.Utils.<func>
+)
