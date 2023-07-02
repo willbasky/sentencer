@@ -14,10 +14,10 @@ import Control.Concurrent.Async (mapConcurrently)
 main :: IO ()
 main = do
   S.shelly $ S.print_stdout False $ do
-    txt <- S.readfile "../sample.txt"
+    txt <- S.readfile "content/sample_arg.txt"
     result <- S.liftIO $ mapConcurrently translator (T.lines txt)
     -- S.liftIO $ pPrint result
-    S.writefile "../result.txt" $ T.concat result
+    S.writefile "content/hs_result_arg.txt" $ T.concat result
 
 -- Helpers
 

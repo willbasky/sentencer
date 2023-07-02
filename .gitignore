@@ -28,3 +28,7 @@ cabal.project.local~
 /output/
 /.spago
 /.psc*
+
+# Ocaml
+/_build
+/osentencer/_build

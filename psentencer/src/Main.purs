@@ -40,7 +40,7 @@ import Data.Traversable
 
 main :: Effect Unit
 main = do
-  sources <- S.split (Pattern "\n") <$> FS.readTextFile NE.UTF8 "sample.txt"
+  sources <- S.split (Pattern "\n") <$> FS.readTextFile NE.UTF8 "content/sample_arg.txt"
   -- logShow txt
   -- let source = "Hola. Cómo estás. \nDónde está el medico?"
   -- let sourceN = "Hola.\nCómo estás.\nDónde está el medico?"
@@ -55,9 +55,9 @@ main = do
       Nothing -> []
       Just res -> res
     -- traceM resRaw
-  let res = Array.concatMap (\arr -> map (\(Tuple a b) -> a<> "\n"<> b<> "\n") arr) resres
+  let res = Array.concatMap (\arr -> map (\(Tuple a b) -> b <> "\n"<> a <> "\n") arr) resres
   let resS = S.joinWith "\n" res
-  FS.writeTextFile NE.UTF8 "ps-result.txt" resS
+  FS.writeTextFile NE.UTF8 "content/ps_result_arg.txt" resS
 
 
 
