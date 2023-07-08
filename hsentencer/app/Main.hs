@@ -1,23 +1,30 @@
 module Main (main) where
 
-import qualified Shelly as S
-import Shelly (Sh)
-import qualified Data.Text as T
 import Data.Text (Text)
+import qualified Data.Text as T
+import Shelly (Sh)
+import qualified Shelly as S
 -- import Text.Pretty.Simple
-import Control.Lens
-import Data.Aeson.Lens ( nth, AsValue(_String, _Array) )
-import Data.Foldable ( Foldable(toList))
+import Config (Config (..), fetchConfig)
 import Control.Concurrent.Async (mapConcurrently)
-
+import Control.Lens
+import Data.Aeson.Lens (AsValue (_Array, _String), nth)
+import Data.Foldable (Foldable (toList))
+import Data.List.Extra (takeWhileEnd)
 
 main :: IO ()
 main = do
+  Config {..} <- fetchConfig
+  let inputPath = directory <> "/" <> input
   S.shelly $ S.print_stdout False $ do
-    txt <- S.readfile "content/sample_arg.txt"
+    txt <- S.readfile inputPath
     result <- S.liftIO $ mapConcurrently translator (T.lines txt)
-    -- S.liftIO $ pPrint result
-    S.writefile "content/hs_result_arg.txt" $ T.concat result
+    let outputPath
+          = directory
+          <> "/"
+          <> "hs_result_"
+          <> takeWhileEnd (/= '_') input
+    S.writefile outputPath $ T.concat result
 
 -- Helpers
 

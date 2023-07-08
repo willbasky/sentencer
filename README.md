@@ -34,6 +34,8 @@ Es un tren enorme, más largo que la distancia entre las estaciones: cuando los 
 
 ## How to use
 
+1. Modify [config file](content.toml) where update directory of input file and name of file in input field. (Work with Haskell now)
+
 - Haskell
 
 ```shell

@@ -23,6 +23,8 @@ cabal.project.local~
 .ghc.environment.*
 
 .vscode
+.stylish-haskell.yaml
+content/
 
 # PureScript
 /output/

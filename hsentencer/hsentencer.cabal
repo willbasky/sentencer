@@ -62,13 +62,25 @@ executable hsentencer
                        -with-rtsopts=-N
 
   build-depends:
-      shelly
+      hsentencer
+    , shelly
     , text
     , lens-aeson ^>= 1.2.2
     , lens
     , async
+    , extra
 
     -- , aeson
     -- , vector
     -- , containers
     -- , pretty-simple
+
+library
+  import:
+      common-options
+  hs-source-dirs:      src
+  exposed-modules:
+    Config
+  build-depends:
+      bytestring
+    , toml-parser
