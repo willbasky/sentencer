@@ -3,12 +3,12 @@ module Main (main) where
 
 import Data.Text (Text)
 import qualified Data.Text as T
-import Shelly (Sh)
 import qualified Shelly as S
--- import Text.Pretty.Simple
 import Config (Config (..), fetchConfig)
+import Util ( flatten, listToTuple, normalizer, runEsRu )
 import Control.Concurrent.Async (mapConcurrently)
 import Control.Lens
+    ( (^..), (^?), folded, foldrOf', _Just, taking )
 import Data.Aeson.Lens (AsValue (_Array, _String), nth)
 import Data.Foldable (Foldable (toList))
 import Data.List.Extra (takeWhileEnd)
@@ -25,29 +25,25 @@ main = do
           <> "/"
           <> "hs_result_"
           <> takeWhileEnd (/= '_') input
-    S.writefile outputPath $ T.concat result
+        list = flatten result
+    -- liftIO $ mapM_ TIO.putStrLn list
+    S.writefile outputPath $ T.intercalate "\n\n" list
 
 -- Helpers
 
-translator :: Text -> IO Text
+translator :: Text -> IO [(Text, Text)]
 translator source = do
   dump <- S.shelly $ runEsRu source
   pure $ foldTranslation $ normalizer dump
 
-runEsRu :: Text -> Sh Text
-runEsRu source =
-  S.silently $ S.command "trans" ["es:ru", "-dump"] [source]
-
-normalizer :: Text -> Text
-normalizer = T.dropWhileEnd (/=']') . T.dropWhile (/= '[')
-
-foldTranslation :: Text -> Text
+foldTranslation :: Text -> [(Text, Text)]
 foldTranslation t =
-  foldrOf
-    (_Just . _Array . folded . _Array)
-    (\(toList -> a) acc
-        -> T.unlines (reverse $ a ^.. taking 2 folded . _String)
-        <> "\n"
-        <> acc)
-    T.empty
-    (t ^? nth 0)
+    let addValid xs acc = if length xs >= 2 then listToTuple xs : acc else acc
+    in foldrOf'
+      (_Just . _Array . folded . _Array)
+      (\(toList -> a) acc
+          -> addValid (reverse (a ^.. taking 2 folded . _String)) acc)
+      []
+      (t ^? nth 0)
+
+

@@ -81,6 +81,9 @@ library
   hs-source-dirs:      src
   exposed-modules:
     Config
+    Util
   build-depends:
       bytestring
+    , shelly
+    , text
     , toml-parser

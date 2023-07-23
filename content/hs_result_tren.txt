@@ -1,10 +1,8 @@
 TREN De Alejandro Dolina
 ПОЕЗД Алехандро Долина
 
-
 (del libro Bar del Infierno)
 (из книги Адский бар)
-
 
 ”El tren pasa solo dos veces por año.
 «Поезд ходит только два раза в год. 
@@ -14,7 +12,6 @@ Llega a la madrugada y se detiene apeas unos segundos.
 
 Es un tren enorme, más largo que la distancia entre las estaciones: cuando los primeros vagones llegan a un pueblo, los últimos aún están en el anterior.
 Это огромный поезд, длиннее, чем расстояние между станциями: когда первые вагоны прибывают в город, последние еще остаются в предыдущем.
-
 
 Nosotros no hemos visto nunca de cerca la locomotora.
 Мы никогда не видели локомотив вблизи. 
@@ -34,7 +31,6 @@ Nadie se baja en nuestro pueblo.
 Tampoco es posible saber de dónde viene o a dónde va.
 Невозможно также узнать, откуда оно приходит и куда уходит.
 
-
 El ferrocarril ha dejado de imprimir horarios hace muchos años y sus empleados hablan otro idioma y son impenetrables.
 Железная дорога перестала печатать расписания много лет назад, а ее сотрудники говорят на другом языке и непроницаемы. 
 
@@ -46,7 +42,6 @@ Las viejas se han encargado de establecer un complicado régimen de supersticion
 
 Dicen que ver a un pasajero equivale a morir, cuentan que a veces bajan del tren unas sombras siniestras que raptan a los caminantes o si no, aseguran que el destino de aquellos trenes es el infierno.
 Говорят, что увидеть пассажира равносильно смерти, говорят, что иногда зловещие тени выходят из поезда и похищают прохожих, а если нет, то говорят, что пункт назначения этих поездов — ад.
-
 
 Hace muchos años, los hermanos Stefan y Stavros Kodor subieron al tren y nadie volvió a verlos jamás.
 Много лет назад братья Стефан и Ставрос Кодор сели в поезд, и больше их никто никогда не видел. 
@@ -65,7 +60,6 @@ No se fue solo.
 
 La empleada de la posada, la pequeña Berta, se marchó con él sin dar ninguna explicación.
 Сотрудница гостиницы, маленькая Берта, ушла с ним, ничего не объяснив.
-
 
 Los trenes pasan siempre en la misma dirección, de Este a Oeste.
 Поезда всегда идут в одном направлении, с востока на запад. 
@@ -87,7 +81,6 @@ Algunas veces (muy pocas, en verdad) el tren pasa por nuestro pueblo sin detener
 
 Este hecho es considerado de mal agüero y todos esperan con ansiedad la llegada y la detención del tren siguiente, para recobrar la calma y la fe en nuestro destino.
 Этот факт считается дурным предзнаменованием и все с тревогой ждут прибытия и остановки очередного поезда, чтобы вновь обрести спокойствие и веру в свою судьбу.
-
 
 Anoche, el tren se detuvo.
 Вчера вечером поезд остановился. 
@@ -133,5 +126,3 @@ Ahora no haré otra cosa que esperar trenes, aunque sepa que jamás volveré a e
 
 Aunque sepa que ya no habrá otra ventanilla abierta para mi”
 Хотя я знаю, что другого окна для меня больше не будет открыто».
-
-
