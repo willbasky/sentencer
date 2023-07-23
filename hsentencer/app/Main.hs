@@ -1,3 +1,4 @@
+{-# LANGUAGE NamedFieldPuns #-}
 module Main (main) where
 
 import Data.Text (Text)
@@ -14,7 +15,7 @@ import Data.List.Extra (takeWhileEnd)
 
 main :: IO ()
 main = do
-  Config {..} <- fetchConfig
+  Config {directory,input} <- fetchConfig
   let inputPath = directory <> "/" <> input
   S.shelly $ S.print_stdout False $ do
     txt <- S.readfile inputPath

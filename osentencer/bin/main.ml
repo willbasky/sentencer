@@ -25,9 +25,9 @@ let formatTranslation str =
   List.fold_right (fun s acc -> (String.concat "\n" s) ^ "\n" ^ acc) ls2 String.empty
 
 let () =
-  let sources = BatFile.lines_of "content/sample_tren.txt" in
+  let sources = BatFile.lines_of "content/sample-ninos.txt" in
   let targets = BatEnum.map (formatTranslation % normalizer % translate) sources in
-  BatFile.write_lines "content/om_result_tren.txt" @@ BatEnum.enum targets
+  BatFile.write_lines "content/om_result_ninos.txt" @@ BatEnum.enum targets
 
 
 

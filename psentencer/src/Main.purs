@@ -40,7 +40,7 @@ import Data.Traversable
 
 main :: Effect Unit
 main = do
-  sources <- S.split (Pattern "\n") <$> FS.readTextFile NE.UTF8 "content/sample_arg.txt"
+  sources <- S.split (Pattern "\n") <$> FS.readTextFile NE.UTF8 "content/sample_ninos.txt"
   -- logShow txt
   -- let source = "Hola. Cómo estás. \nDónde está el medico?"
   -- let sourceN = "Hola.\nCómo estás.\nDónde está el medico?"

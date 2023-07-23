@@ -27,6 +27,7 @@ Es un tren enorme, más largo que la distancia entre las estaciones: cuando los 
 - [x] Haskell
 - [x] PureScript
 - [x] Ocaml
+- [ ] Go
 - [ ] Python
 - [ ] TypeScript
 - [ ] Rust

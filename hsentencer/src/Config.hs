@@ -4,9 +4,10 @@ module Config
   , fetchConfig
   ) where
 
-import Toml
+import Toml ( decode, Result(Success, Failure) )
 import Toml.FromValue
-import Toml.FromValue.Generic
+    ( FromTable(..), FromValue(fromValue), defaultTableFromValue )
+import Toml.FromValue.Generic ( genericFromTable )
 import qualified Data.ByteString.Char8 as B
 import GHC.Generics (Generic)
 
@@ -18,7 +19,7 @@ data Config = Config
   deriving stock (Eq, Show, Generic)
 
 instance FromTable Config where fromTable = genericFromTable
-instance FromValue Config   where fromValue = defaultTableFromValue
+instance FromValue Config where fromValue = defaultTableFromValue
 
 fetchConfig :: IO Config
 fetchConfig = do
