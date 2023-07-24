@@ -39,10 +39,11 @@ translator source = do
 foldTranslation :: Text -> [(Text, Text)]
 foldTranslation t =
     let addValid xs acc = if length xs >= 2 then listToTuple xs : acc else acc
+        stringOnly2 a = reverse (a ^.. taking 2 folded . _String)
     in foldrOf'
       (_Just . _Array . folded . _Array)
       (\(toList -> a) acc
-          -> addValid (reverse (a ^.. taking 2 folded . _String)) acc)
+          -> addValid (stringOnly2 a) acc)
       []
       (t ^? nth 0)
 
