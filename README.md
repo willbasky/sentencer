@@ -1,10 +1,9 @@
 # sentencer
 
 Utility to translate each sentence of a text to source/target
+It use [translate-shell](https://github.com/soimort/translate-shell) under hood to communicate with Google Translate Api.
 
 ## Example
-
-
 
 [Input](./content/sample_tren.txt):
 ```text
