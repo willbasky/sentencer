@@ -3,6 +3,7 @@ module Main (main) where
 
 import Data.Text (Text)
 import qualified Data.Text as T
+import qualified Data.Text.Encoding as TE
 import qualified Shelly as S
 import Config (Config (..), fetchConfig)
 import Util ( flatten, listToTuple, normalizer, runEsRu )
@@ -12,6 +13,10 @@ import Control.Lens
 import Data.Aeson.Lens (AsValue (_Array, _String), nth)
 import Data.Foldable (Foldable (toList))
 import Data.List.Extra (takeWhileEnd)
+import qualified Data.List.NonEmpty as NE
+import Data.List.NonEmpty (NonEmpty)
+import qualified Data.ByteString.Char8 as B
+
 
 main :: IO ()
 main = do
@@ -34,13 +39,18 @@ main = do
 translator :: Text -> IO [(Text, Text)]
 translator source = do
   dump <- S.shelly $ runEsRu source
-  pure $ foldTranslation $ normalizer dump
+  case foldTranslation $ normalizer dump of
+    Nothing -> do
+      B.putStrLn $ "LOG: There is not translation for\n<<<\n" <> TE.encodeUtf8 source
+      B.putStrLn ">>>"
+      pure []
+    Just list -> pure $ NE.toList list
 
-foldTranslation :: Text -> [(Text, Text)]
+foldTranslation :: Text -> Maybe (NonEmpty (Text, Text))
 foldTranslation t =
     let addValid xs acc = if length xs >= 2 then listToTuple xs : acc else acc
         stringOnly2 a = reverse (a ^.. taking 2 folded . _String)
-    in foldrOf'
+    in NE.nonEmpty $ foldrOf'
       (_Just . _Array . folded . _Array)
       (\(toList -> a) acc
           -> addValid (stringOnly2 a) acc)

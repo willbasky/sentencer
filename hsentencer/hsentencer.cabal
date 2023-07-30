@@ -63,6 +63,7 @@ executable hsentencer
 
   build-depends:
       hsentencer
+    , bytestring
     , shelly
     , text
     , lens-aeson ^>= 1.2.2
