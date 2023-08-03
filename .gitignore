@@ -34,3 +34,6 @@ content/
 # Ocaml
 /_build
 /osentencer/_build
+
+# Rust
+target/

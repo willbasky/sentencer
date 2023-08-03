@@ -39,15 +39,15 @@ main = do
 translator :: Text -> IO [(Text, Text)]
 translator source = do
   dump <- S.shelly $ runEsRu source
-  case foldTranslation $ normalizer dump of
+  case parseTranslation $ normalizer dump of
     Nothing -> do
       B.putStrLn $ "LOG: There is not translation for\n<<<\n" <> TE.encodeUtf8 source
       B.putStrLn ">>>"
       pure []
     Just list -> pure $ NE.toList list
 
-foldTranslation :: Text -> Maybe (NonEmpty (Text, Text))
-foldTranslation t =
+parseTranslation :: Text -> Maybe (NonEmpty (Text, Text))
+parseTranslation t =
     let addValid xs acc = if length xs >= 2 then listToTuple xs : acc else acc
         stringOnly2 a = reverse (a ^.. taking 2 folded . _String)
     in NE.nonEmpty $ foldrOf'
