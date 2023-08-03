@@ -16,7 +16,7 @@ pub struct Config {
   pub input : String,
 }
 
-pub fn runEsRu(source: &str) -> String {
+pub fn run_es_ru(source: &str) -> String {
   let output = Command::new("trans")
     .arg("es:ru")
     .arg("-dump")
