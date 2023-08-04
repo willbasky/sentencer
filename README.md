@@ -31,7 +31,9 @@ Es un tren enorme, más largo que la distancia entre las estaciones: cuando los 
 
 ## How to use
 
-1. Modify [config file](content.toml) where update directory of input file and name of file in input field. (Work with Haskell now)
+1. Modify [config file](content.toml) directory of input file and name of file.
+   The configuration via Toml implemented for Haskell, Go and Rust versions.
+   The paths in other languages hardcoded in sources.
 
 2. Run language-specific command:
 
@@ -59,13 +61,19 @@ dune exec osentencer
 go run sentencer/gsentencer
 ```
 
+- Rust
+
+```shell
+cargo run
+```
+
 ## Roadmap
 
 - [x] Haskell
 - [x] PureScript
 - [x] Ocaml
 - [x] Go
+- [x] Rust
 - [ ] Python
 - [ ] TypeScript
-- [ ] Rust
 - [ ] Kotlin
