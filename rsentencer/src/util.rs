@@ -32,5 +32,32 @@ pub fn normalaizer(dump: &str) -> String {
   let right_index = dump.rfind(']').unwrap();
 
   dump[left_index..right_index+1].to_string()
+}
 
+pub fn fetch_config() -> Config {
+
+  let config_str =
+  read_to_string("content.toml").unwrap();
+
+  let conf: Config = toml::from_str(&config_str).unwrap();
+  conf
+}
+
+pub fn flatten(translations: Vec<(usize, Vec<String>)>) -> String {
+  let mut result: Vec<String> = Vec::new();
+
+  for (_, ts) in translations  {
+    for t in ts {
+      result.push(t)
+    }
+  }
+
+  let res = result.join("\n\n");
+  res
+}
+
+pub fn output_path(conf: Config) -> String {
+  let start_index = conf.input.rfind('_').unwrap();
+  let end = conf.input[start_index..].to_string();
+  [conf.directory, "/rs_result".to_string(), end].concat()
 }

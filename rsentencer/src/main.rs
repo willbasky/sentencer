@@ -1,53 +1,23 @@
 mod util;
 
 use util::*;
-use std::{fs::{read_to_string, self}, thread::{self}};
+use std::{fs::{self}, thread::{self}};
 use serde_json::Value;
-// use std::collections::BTreeMap;
 
 fn main() {
-  let config_str =
-    read_to_string("content.toml").unwrap();
-
-  let conf: Config = toml::from_str(&config_str).unwrap();
-  println!("{:?}",conf);
+  let conf: Config = fetch_config();
 
   let input_path: String = format!("{}/{}", conf.directory, conf.input);
 
   let source_lines: Vec<String> = read_lines(&input_path);
 
-  let source_line_indexed = (1..=source_lines.len()).zip(source_lines);
+  let mut translations: Vec<(usize, Vec<String>)> = map_concurrently(source_lines);
 
-  let mut await_translations = Vec::new();
-
-  for (i,source) in source_line_indexed {
-
-    await_translations.push(thread::spawn(move || -> _ {
-      let mut translation: Vec<String> = Vec::new();
-      translator(source, &mut translation);
-      (i,translation)
-    }))
-  }
-
-  let mut translations: Vec<(usize, Vec<String>)> = vec![];
-  for trans in await_translations {
-      let intermediate = trans.join().unwrap();
-      translations.push(intermediate);
-  }
   translations.sort();
 
-  let mut result = Vec::new();
+  let res = flatten(translations);
 
-  for (_, ts) in translations  {
-    for t in ts {
-      result.push(t)
-    }
-  }
-
-  let res = result.join("\n\n");
-
-  fs::write("content/rust_test.txt", res).unwrap()
-
+  fs::write(output_path(conf), res).unwrap();
 }
 
 fn translator (source: String, translation: &mut Vec<String>) {
@@ -73,3 +43,25 @@ fn parse_translation(dump: String, translation: &mut Vec<String>) {
       }
     }
 }
+
+fn map_concurrently (source_lines: Vec<String>) -> Vec<(usize, Vec<String>)> {
+  let source_line_indexed = (1..=source_lines.len()).zip(source_lines);
+  let mut await_translations = Vec::new();
+
+  for (i,source) in source_line_indexed {
+
+    await_translations.push(thread::spawn(move || -> _ {
+      let mut translation: Vec<String> = Vec::new();
+      translator(source, &mut translation);
+      (i,translation)
+    }))
+  }
+
+  let mut translations: Vec<(usize, Vec<String>)> = vec![];
+  for trans in await_translations {
+      let intermediate = trans.join().unwrap();
+      translations.push(intermediate);
+  }
+  translations
+}
+
